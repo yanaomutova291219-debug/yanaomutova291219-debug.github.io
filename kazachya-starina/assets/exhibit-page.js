@@ -375,8 +375,58 @@ const $ = (id) => document.getElementById(id);
     $("zoomOut").addEventListener("click", () => changeZoom(-.18));
     $("zoomIn").addEventListener("click", () => changeZoom(.18));
     $("resetView").addEventListener("click", resetView);
-    $("fullscreen").addEventListener("click", () => {
-      if (stage.requestFullscreen) stage.requestFullscreen();
+    const artifactSide = stage.closest(".artifact-side");
+    const fullscreenButton = $("fullscreen");
+    const closeView = document.createElement("button");
+    closeView.type = "button";
+    closeView.className = "viewer-close";
+    closeView.textContent = "×";
+    closeView.setAttribute("aria-label", "Закрыть полный экран");
+    artifactSide.append(closeView);
+    fullscreenButton.setAttribute("aria-haspopup", "dialog");
+    fullscreenButton.setAttribute("aria-expanded", "false");
+    let expandedView = false;
+
+    function setExpandedView(expanded) {
+      expandedView = expanded;
+      artifactSide.classList.toggle("is-expanded", expanded);
+      document.documentElement.classList.toggle("viewer-open", expanded);
+      fullscreenButton.setAttribute("aria-expanded", String(expanded));
+      fullscreenButton.setAttribute("aria-label", expanded ? "Вернуть обычный вид" : "Открыть на весь экран");
+      if (expanded) {
+        artifactSide.parentElement.style.animation = "none";
+        artifactSide.setAttribute("role", "dialog");
+        artifactSide.setAttribute("aria-modal", "true");
+        artifactSide.setAttribute("aria-label", "Экспонат крупным планом");
+        closeView.focus();
+      } else {
+        artifactSide.removeAttribute("role");
+        artifactSide.removeAttribute("aria-modal");
+        artifactSide.removeAttribute("aria-label");
+        fullscreenButton.focus();
+      }
+    }
+
+    fullscreenButton.addEventListener("click", () => setExpandedView(!expandedView));
+    closeView.addEventListener("click", () => setExpandedView(false));
+    artifactSide.addEventListener("keydown", (event) => {
+      if (!expandedView) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setExpandedView(false);
+      } else if (event.key === "Tab") {
+        const controls = Array.from(artifactSide.querySelectorAll("button, [tabindex='0']"))
+          .filter((element) => element.offsetParent !== null);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     });
     $("speakToggle").addEventListener("click", () => {
       if (!speech) return;

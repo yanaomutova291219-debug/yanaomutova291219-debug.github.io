@@ -623,7 +623,7 @@
       .viewer-controls { align-items: flex-start; flex-direction: column; padding-top: .7rem; }
       .control-hint { max-width: none; }
       .control-buttons { width: 100%; justify-content: space-between; }
-      .viewer-button { width: 42px; height: 42px; }
+      .viewer-button { width: 44px; height: 44px; }
       .story-side { min-height: 0; padding: 1.3rem 1.1rem 1.2rem; }
       .story-topline { font-size: .53rem; }
       .story-category { margin-top: 1.1rem; }
@@ -651,6 +651,47 @@
     @media (max-width: 980px) {
       body[data-exhibit] .artifact-side { position: relative; top: auto; align-self: stretch; height: auto; min-height: 560px; }
       body[data-exhibit] .viewer-stage { min-height: 430px; }
+    }
+    html.viewer-open, html.viewer-open body { overflow: hidden; }
+    .viewer-close { display: none; }
+    body[data-exhibit] .artifact-side.is-expanded {
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      padding: 1rem;
+      padding: max(1rem, env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px)) max(1rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+      border: 0;
+      background: #111816;
+    }
+    .artifact-side.is-expanded .artifact-topline { padding-right: 3.25rem; }
+    body[data-exhibit] .artifact-side.is-expanded .viewer-stage { flex: 1; min-height: 0; }
+    body[data-exhibit] .artifact-side.is-expanded .artifact-image {
+      max-height: calc(100vh - 190px);
+      max-height: calc(100dvh - 190px);
+    }
+    .artifact-side.is-expanded .viewer-close {
+      position: absolute;
+      z-index: 5;
+      top: max(.8rem, env(safe-area-inset-top, 0px));
+      right: max(.8rem, env(safe-area-inset-right, 0px));
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(213, 172, 114, .5);
+      background: #111816;
+      color: var(--gold-bright);
+      font-size: 1.75rem;
+      cursor: pointer;
+    }
+    .viewer-close:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
+    @media (max-width: 680px) {
+      body[data-exhibit] .artifact-side:not(.is-expanded) { min-height: 0; }
+      body[data-exhibit] .artifact-side:not(.is-expanded) .viewer-stage { min-height: min(105vw, 420px); }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }

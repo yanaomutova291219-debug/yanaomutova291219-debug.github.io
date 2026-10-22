@@ -5,7 +5,7 @@
   --hall-copper: #d5ac72;
   --hall-glow: #f1d6a2;
 }
-.hall-page { min-height: 100vh; overflow-x: clip; background: var(--hall-ink); }
+.hall-page { min-height: 100vh; overflow-x: hidden; overflow-x: clip; background: var(--hall-ink); }
 .hall-page::before { opacity: .09; }
 .hall-header { width: min(1540px, calc(100% - 5.5rem)); min-height: 88px; border-bottom-color: rgba(239,224,197,.13); }
 .hall-page .header-count { color: var(--hall-glow); }
@@ -180,7 +180,7 @@
   .hall-header { width: calc(100% - 2rem); min-height: 72px; }
   .hall-header .header-count { display: none; }
   .hall-hero, .hall-collection, .hall-about { width: calc(100% - 2rem); }
-  .hall-hero { display: flex; min-height: auto; flex-direction: column; align-items: stretch; gap: 0; padding: 4rem 0 4.8rem; }
+  .hall-hero { display: flex; min-height: auto; flex-direction: column; align-items: stretch; gap: 0; padding: 4rem 0 4.8rem; overflow: hidden; overflow: clip; }
   .hero-copy { padding: 0; }
   .hero-copy .eyebrow { margin-bottom: 1.35rem; font-size: .55rem; }
   .hero-edition { gap: .5rem; font-size: .45rem; }
@@ -215,6 +215,7 @@
   .wheel-info p { font-size: .62rem; }
   .wheel-open { min-height: 39px; margin-top: .85rem; }
   .wheel-controls { margin-top: .8rem; }
+  .wheel-arrow { width: 44px; height: 44px; }
   .wheel-hint { max-width: 380px; margin: .65rem auto 0; font-size: .49rem; line-height: 1.5; }
   .collection-tools { align-items: stretch; flex-direction: column-reverse; }
   .hall-search { min-width: 0; }
