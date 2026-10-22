@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1111">
+  <meta name="description" content="Казачья старина — цифровой музей Кубани. Выберите один из тринадцати предметов и откройте его отдельную историю.">
+  <title>Казачья старина — общий зал</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23d5ac72' d='M32 3 39 23 60 16 45 32 60 48 39 41 32 61 25 41 4 48 19 32 4 16 25 23z'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%230c1110'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/kazachya-starina/assets/museum.css">
+  <link rel="stylesheet" href="/kazachya-starina/assets/hall.css">
+</head>
+<body class="hall-page">
+  <a class="skip-link" href="#collection">Перейти к экспонатам</a>
+  <canvas class="sky-field" id="skyField" aria-hidden="true"></canvas>
+
+  <header class="site-header hall-header">
+    <a class="brand" href="/kazachya-starina/" aria-label="Казачья старина — в общий зал">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M32 3 39 23 60 16 45 32 60 48 39 41 32 61 25 41 4 48 19 32 4 16 25 23z"/><circle cx="32" cy="32" r="7" fill="#0c1110"/><circle cx="32" cy="32" r="3" fill="currentColor"/></svg>
+      <span><span class="brand-name">Казачья старина</span><span class="brand-caption">Музей живых вещей</span></span>
+    </a>
+    <div class="header-right">
+      <nav class="nav-links" id="navLinks" aria-label="Навигация">
+        <a href="#collection">Общий зал</a>
+        <a href="#about">О музее</a>
+      </nav>
+      <span class="header-count">13 предметов</span>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Открыть меню" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hall-hero" aria-labelledby="pageTitle">
+      <div class="hero-ambience" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow">Кубань · казачий уклад · семейная память</p>
+        <p class="hero-edition">ЦИФРОВОЙ МУЗЕЙ <i></i> 13 ПРЕДМЕТОВ <i></i> 13 ИСТОРИЙ</p>
+        <h1 id="pageTitle">Вещи, которые<br><em>помнят дорогу.</em></h1>
+        <p class="hero-description">Казачья старина — это не только походы и награды. Это дом, служба, мастерство, вера и близкие, которые ждут. Войдите в общий зал, выберите вещь и рассмотрите её историю с расстояния вытянутой руки.</p>
+        <div class="hero-actions">
+          <a class="hero-cta" href="#collection"><span>Войти в общий зал</span><b aria-hidden="true">↘</b></a>
+          <a class="hero-feature-link" href="/kazachya-starina/exhibits/coin.html"><span class="hero-play" aria-hidden="true">↗</span><span>Сразу к полтиннику<br><small>Открыть первый экспонат</small></span></a>
+        </div>
+        <div class="hero-footnote"><span class="footnote-line"></span>Нажмите на предмет — у каждого своя страница</div>
+      </div>
+
+      <a class="hero-relic-link" href="/kazachya-starina/exhibits/coin.html" aria-label="Открыть историю полтинника с двумя отметинами">
+        <div class="hero-stage" id="heroStage">
+          <div class="orbit orbit-a" aria-hidden="true"></div>
+          <div class="orbit orbit-b" aria-hidden="true"></div>
+          <div class="orbit orbit-c" aria-hidden="true"></div>
+          <div class="hero-aura" aria-hidden="true"></div>
+          <img class="hero-relic" id="heroRelic" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Полтинник 1926 года с двумя пробоинами, показаны обе стороны" fetchpriority="high">
+          <div class="hero-glass-label">
+            <span class="glass-overline"><i></i> ПЕРВЫЙ ЭКСПОНАТ · 01 / 13</span>
+            <strong>Полтинник<br>с двумя отметинами</strong>
+            <span class="glass-enter">ПРИБЛИЗИТЬ И ОТКРЫТЬ <b aria-hidden="true">↗</b></span>
+          </div>
+          <span class="hero-micro-label hero-micro-left">1926<br><b>КУБАНЬ</b></span>
+          <span class="hero-micro-label hero-micro-right">50<br><b>КОПЕЕК</b></span>
+        </div>
+      </a>
+      <a class="scroll-cue" href="#collection"><span>Листайте вниз</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <section class="hall-collection" id="collection" aria-labelledby="collectionTitle">
+      <div class="collection-heading" data-reveal>
+        <div>
+          <p class="eyebrow">Общий зал · 01–13</p>
+          <h2 id="collectionTitle">Выберите свою<br><em>остановку.</em></h2>
+        </div>
+        <p class="collection-note">Каждая карточка ведёт на отдельную страницу экспоната: с крупным музейным ракурсом, развёрнутой историей и озвучиванием.</p>
+      </div>
+
+      <div class="collection-wheel" id="collectionWheel" role="region" aria-roledescription="круговая карусель" aria-label="Круговой просмотр экспонатов">
+        <div class="wheel-viewport">
+          <div class="wheel-stage" id="wheelStage" tabindex="0" aria-describedby="wheelHint">
+            <div class="wheel-aura" aria-hidden="true"></div>
+            <div class="wheel-ring" id="wheelRing"></div>
+          </div>
+          <div class="wheel-info" aria-live="polite">
+            <span class="wheel-overline" id="wheelCount">01 / 13 · ЭКСПОНАТ</span>
+            <h3 id="wheelTitle">Полтинник с двумя отметинами</h3>
+            <p id="wheelMeta">Монета · 50 копеек · 1926</p>
+            <a class="wheel-open" id="wheelOpen" href="/kazachya-starina/exhibits/coin.html">Открыть экспонат <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="wheel-controls" aria-label="Управление круговой каруселью">
+          <button class="wheel-arrow" id="wheelPrevious" type="button" aria-label="Предыдущий экспонат">←</button>
+          <span class="wheel-counter" id="wheelCounter">01 <i>/</i> 13</span>
+          <button class="wheel-arrow" id="wheelNext" type="button" aria-label="Следующий экспонат">→</button>
+        </div>
+        <p class="wheel-hint" id="wheelHint">Проведите по кругу, чтобы перелистывать экспонаты. Нажмите на центральную вещь, чтобы открыть её страницу.</p>
+        <span class="sr-only" id="wheelStatus" role="status" aria-live="polite"></span>
+      </div>
+
+      <div class="collection-tools" data-reveal>
+        <div class="hall-filters" id="hallFilters" role="group" aria-label="Разделы экспозиции"></div>
+        <label class="hall-search"><span aria-hidden="true">⌕</span><span class="sr-only">Поиск экспоната</span><input id="exhibitSearch" type="search" placeholder="Найти вещь" autocomplete="off"></label>
+      </div>
+      <div class="collection-result"><span id="resultCount">13 экспонатов</span><span>КУБАНЬ · ЛИЧНЫЕ ВЕЩИ · ПАМЯТЬ</span></div>
+      <div class="exhibit-grid" id="exhibitGrid" aria-live="polite"></div>
+      <p class="empty-search" id="emptySearch" hidden>В этой части зала таких экспонатов нет.</p>
+    </section>
+
+    <section class="hall-about" id="about" data-reveal>
+      <div class="about-orbit" aria-hidden="true"></div>
+      <p class="eyebrow">О музее · о людях за вещами</p>
+      <h2>Память не стоит<br>за стеклом.</h2>
+      <p>Она живёт в починенной монете, в складке старого ковра, в ладонях, которые качали колыбель. Эта экспозиция соединяет казачий уклад Кубани с историями дома и дороги — чтобы за каждым предметом можно было увидеть человека.</p>
+      <a href="#collection" class="about-link">Вернуться к экспонатам <span aria-hidden="true">↑</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer hall-footer">
+    <span>Казачья старина · цифровой музей Кубани</span>
+    <span>Один экспонат — одна отдельная история</span>
+    <a href="#top">В начало ↑</a>
+  </footer>
+
+  <script src="/kazachya-starina/assets/museum-thumbs.js"></script>
+<script src="/kazachya-starina/assets/media-full-coin-1926.js"></script>
+<script src="/kazachya-starina/assets/museum-data.js"></script>
+  <script src="/kazachya-starina/assets/hall.js"></script>
+</body>
+</html>
